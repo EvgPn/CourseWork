@@ -3,14 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnController : MonoBehaviour
-{
-	[SerializeField] private float _minVehicleSpeed;
-	[SerializeField] private float _maxVehicleSpeed;
-	[SerializeField] private float _intervalBetweenSpawn = 4;
+{	
+	[SerializeField] private float _intervalBetweenSpawn;
+	public static float _minSpeedInterval;
+	public static float _maxSpeedInterval;
+
+	private void OnEnable()
+    {
+        InputController.SetSpeedInterval += SetSpeedIntervalsFromInput;
+    }
 
 	private void Start()
 	{
 		StartCoroutine(DoCheck());
+	}
+
+	private void SetSpeedIntervalsFromInput(float min, float max)
+	{
+		_minSpeedInterval = min;
+		_maxSpeedInterval = max;
+	}
+
+	private void SetTimeSpawnInterval(float seconds)
+	{
+		_intervalBetweenSpawn = seconds;
 	}
 
 	private IEnumerator DoCheck()
