@@ -13,6 +13,6 @@ public class InputController : MonoBehaviour
     private void Start()
     {
         SetSpeedInterval?.Invoke(3, 10);
-        SetSpawnTimeInterval?.Invoke(4);
+        SetSpawnTimeInterval?.Invoke(7);
     }
 }

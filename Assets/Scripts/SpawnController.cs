@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {	
-	[SerializeField] private float _intervalBetweenSpawn;
+	private float _intervalBetweenSpawn;
 	public static float _minSpeedInterval;
 	public static float _maxSpeedInterval;
 
 	private void OnEnable()
     {
         InputController.SetSpeedInterval += SetSpeedIntervalsFromInput;
+		InputController.SetSpawnTimeInterval += SetTimeSpawnInterval;
     }
 
 	private void Start()

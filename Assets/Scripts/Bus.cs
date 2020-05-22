@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bus : Vehicle
 {
-    public override void SetMoveSpeed()
+    protected override void SetMoveSpeed()
     {
         GetSpeedInterval(_minSpeedInterval, _maxSpeedInterval);
         base.ChooseNewRandomSpeed();
@@ -13,8 +13,10 @@ public class Bus : Vehicle
     private void GetSpeedInterval(float minSpeed, float maxSpeed)
     {
         if (minSpeed < 1) minSpeed = 1;
-        if (maxSpeed > 3) maxSpeed = 3;
+        if (maxSpeed > 4) maxSpeed = 4;
 
         base.ChangeSpeedLimits(minSpeed, maxSpeed);
     }
+
+    protected override void SetLengthOfRay(float length) => base.SetLengthOfRay(7f);
 }

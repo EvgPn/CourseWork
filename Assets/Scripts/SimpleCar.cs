@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SimpleCar : Vehicle
-{   
-    public override void SetMoveSpeed()
+{    
+    protected override void SetMoveSpeed()
     {
         GetSpeedInterval(_minSpeedInterval, _maxSpeedInterval);
         base.ChooseNewRandomSpeed();
@@ -13,8 +13,10 @@ public class SimpleCar : Vehicle
     private void GetSpeedInterval(float minSpeed, float maxSpeed)
     {
         if (minSpeed < 1) minSpeed = 1;
-        if (maxSpeed > 5) maxSpeed = 5;
+        if (maxSpeed > 6) maxSpeed = 6;
 
         base.ChangeSpeedLimits(minSpeed, maxSpeed);
     }
+
+    protected override void SetLengthOfRay(float length) => base.SetLengthOfRay(5f);    
 }

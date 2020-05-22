@@ -444,6 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a34bb94123cd8744eb6ed85ca09dbc80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CheckRoundaboutCars: 0
 --- !u!65 &7693424984484750562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -455,5 +456,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.6, z: 2.3}
+  m_Size: {x: 1.1, y: 0.6, z: 2.3}
   m_Center: {x: 0, y: 0.4, z: 0}
