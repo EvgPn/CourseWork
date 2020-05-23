@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using PathCreation;
 
 public class PathFollower : MonoBehaviour
@@ -10,11 +8,11 @@ public class PathFollower : MonoBehaviour
 
 	private EndOfPathInstruction _endOfPathInstruction = EndOfPathInstruction.Stop;
 	private float _distanceTravelled;
-	
+
 	private void Update()
 	{
 		_distanceTravelled += _moveSpeed * Time.deltaTime;
 		transform.position = _pathCreator.path.GetPointAtDistance(_distanceTravelled, _endOfPathInstruction);
-		transform.rotation = _pathCreator.path.GetRotationAtDistance(_distanceTravelled, _endOfPathInstruction);		
+		transform.rotation = _pathCreator.path.GetRotationAtDistance(_distanceTravelled, _endOfPathInstruction);
 	}
 }
