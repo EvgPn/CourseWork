@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class InputController : MonoBehaviour
 {
+	//events for handing of input speed limits and time intervals data
 	public delegate void InputSpeedParamsCallBack(float minSpeed, float maxSpeed);
 	public static event InputSpeedParamsCallBack SetSpeedInterval;
 
@@ -20,6 +21,7 @@ public class InputController : MonoBehaviour
 		SetSpawnTimeInterval?.Invoke(7);
 	}
 
+	//seting of spwn vehicle intervals for each spawn point of road
 	public void SetSpawnIntervals()
 	{
 		string[] intervals = _intervalsForSpawn.text.Split(' ');
@@ -31,6 +33,7 @@ public class InputController : MonoBehaviour
 		}
 	}
 
+	//seting of vehicle speed interval
 	public void SetNewSpeedInterval()
 	{
 		string[] interval = _speedInterval.text.Split(' ');

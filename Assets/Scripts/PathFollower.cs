@@ -3,6 +3,7 @@ using PathCreation;
 
 public class PathFollower : MonoBehaviour
 {
+	//Script for following some specific path by vehicle
 	public PathCreator _pathCreator;
 	public float _moveSpeed = 0f;
 

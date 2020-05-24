@@ -13,6 +13,8 @@ public class Vehicle : MonoBehaviour
 	public float MaxMoveSpeed { get; set; }
 
 	protected float _randomSelectedSpeed;
+
+	//fields for geting speed intervals from spawn point contoller
 	protected float _minSpeedInterval = SpawnController._minSpeedInterval;
 	protected float _maxSpeedInterval = SpawnController._maxSpeedInterval;
 
@@ -60,18 +62,19 @@ public class Vehicle : MonoBehaviour
 		Debug.DrawRay(rayStart, rayDirection, rayColor);
 	}
 
+	//method for casting of ray from vehicle to check forward vehicles and seting new move parametrs
 	protected void CastRayForwardFromVehicle()
 	{
-		RaycastHit hit;
-		if (Physics.SphereCast(transform.position + Vector3.up / 2, 0.2f, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0) * _directionOfRay, out hit, LengthOfRay))
+		RaycastHit hitCast;
+		if (Physics.SphereCast(transform.position + Vector3.up / 2, 0.2f, Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0) * _directionOfRay, out hitCast, LengthOfRay))
 		{
-			if (hit.distance < (LengthOfRay - 1f) && hit.transform.gameObject.tag == "Vehicle")
+			if (hitCast.distance < (LengthOfRay - 1f) && hitCast.transform.gameObject.tag == "Vehicle")
 			{
 				gameObject.GetComponent<PathFollower>()._moveSpeed = 0f;
 			}
-			else if (hit.transform.gameObject.tag == "Vehicle")
+			else if (hitCast.transform.gameObject.tag == "Vehicle")
 			{
-				gameObject.GetComponent<PathFollower>()._moveSpeed = hit.transform.gameObject.GetComponent<PathFollower>()._moveSpeed;
+				gameObject.GetComponent<PathFollower>()._moveSpeed = hitCast.transform.gameObject.GetComponent<PathFollower>()._moveSpeed;
 			}
 			else
 			{
@@ -84,16 +87,16 @@ public class Vehicle : MonoBehaviour
 		}
 	}
 
-
+	//method for casting of ray before racing on roundabout and seting new move parametrs
 	protected void CastRayOnRoundabout()
 	{
 		DrawVisibleInEditorRay(transform.position + Vector3.up / 2, Quaternion.Euler(0, transform.rotation.eulerAngles.y - 55f, 0) * _directionOfRay * (LengthOfRay + 1.5f), _colorOfRay);
 
-		RaycastHit hit;
-		if (Physics.SphereCast(transform.position + Vector3.up / 2, 1f, Quaternion.Euler(0, transform.rotation.eulerAngles.y - 55f, 0) * _directionOfRay, out hit, LengthOfRay + 1.5f))
+		RaycastHit hitCast;
+		if (Physics.SphereCast(transform.position + Vector3.up / 2, 1f, Quaternion.Euler(0, transform.rotation.eulerAngles.y - 55f, 0) * _directionOfRay, out hitCast, LengthOfRay + 1.5f))
 		{
 			CheckRoundaboutCars = true;
-			if (hit.transform.gameObject.tag == "Vehicle")
+			if (hitCast.transform.gameObject.tag == "Vehicle")
 			{
 				gameObject.GetComponent<PathFollower>()._moveSpeed = 0f;
 				StartCoroutine(WaitOnRoundaboutCheck());

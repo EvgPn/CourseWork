@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
+	//fields for geting input values from InputController
 	private float _intervalBetweenSpawn;
 	public static float _minSpeedInterval;
 	public static float _maxSpeedInterval;
